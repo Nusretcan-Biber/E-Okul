@@ -2,7 +2,6 @@
 using Core.Check_List;
 using Core.ExeptionControl;
 using Data.Model;
-using DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,30 +10,28 @@ using System.Threading.Tasks;
 
 namespace Businnes.Model_Services
 {
-    public class StudentService : BaseService<Student>
+    public class TeacherService : BaseService<Teacher>
     {
+        Queries<Teacher> queries = new Queries<Teacher>();
 
-        // sorgular burada olacak çünkü base service de gelen parametreler T tipinde 
-        Queries<Student> queries = new Queries<Student>();
-        
         Exeptions exeption = new Exeptions();
-        public string StudentDeleteRequest(int studentid)
+        public string TeacherDeleteRequest(int id)
         {
-            if (Extensions.CheckNumberIsNull(studentid))
+            if (Extensions.CheckNumberIsNull(id))
             {
                 return exeption.NullExeption();
             }
-            else if (queries.CheckIsNumberNegative(studentid))
+            else if (queries.CheckIsNumberNegative(id))
             {
                 return exeption.NegativeExeption();
             }
-            else if (!queries.CheckIsExistId(studentid))
+            else if (!queries.CheckIsExistId(id))
             {
                 return exeption.IsNotExistIdExeption();
             }
             else
             {
-                if (DeleteRequest(studentid) == exeption.SuccessExeption())
+                if (DeleteRequest(id) == exeption.SuccessExeption())
                 {
                     return exeption.SuccessExeption();
                 }
@@ -45,62 +42,62 @@ namespace Businnes.Model_Services
             }
         }
 
-        public List<Student> StudentGetAllRequest()
+        public List<Teacher> TeacherGetAllRequest()
         {
             return GetAllListRequest();
         }
-        public Student StudentGetByIdRequest(int studentid)
+        public Teacher TeacherGetByIdRequest(int id)
         {
-            return GetByIdRequest(studentid);
+            return GetByIdRequest(id);
         }
 
-        public string StudentInsertRequest(Student model)
+        public string TeacherInsertRequest(Teacher model)
         {
-            if (Extensions.CheckNumberIsNull(model.SudentId))
+            if (Extensions.CheckNumberIsNull(model.teacherId))
             {
                 return exeption.NullExeption();
             }
-            else if (queries.CheckIsNumberNegative(model.SudentId))
+            else if (queries.CheckIsNumberNegative(model.teacherId))
             {
-                return exeption.NegativeExeption(); 
+                return exeption.NegativeExeption();
             }
-            else if (queries.CheckIsExistId(model.SudentId))
+            else if (queries.CheckIsExistId(model.teacherId))
             {
                 return exeption.IsExistNumberExeption();
             }
-            else if (queries.CheckTextIsNull(model.StudentName))
+            else if (queries.CheckTextIsNull(model.teacherName))
             {
                 return exeption.NullExeption();
             }
-            else if (queries.CheckStringsAreInteger(model.StudentName))
+            else if (queries.CheckStringsAreInteger(model.teacherName))
             {
                 return exeption.NumberExeption();
             }
-            else if (queries.CheckLenghtOfStrings(model.StudentName))
+            else if (queries.CheckLenghtOfStrings(model.teacherName))
             {
                 return exeption.LenghtExeption();
             }
-            else if (queries.CheckTextIsNull(model.StudentSurname))
+            else if (queries.CheckTextIsNull(model.teacherSurname))
             {
                 return exeption.NullExeption();
             }
-            else if (queries.CheckStringsAreInteger(model.StudentSurname))
+            else if (queries.CheckStringsAreInteger(model.teacherSurname))
             {
                 return exeption.NumberExeption();
             }
-            else if (queries.CheckLenghtOfStrings(model.StudentSurname))
+            else if (queries.CheckLenghtOfStrings(model.teacherSurname))
             {
                 return exeption.LenghtExeption();
             }
-            else if (queries.CheckTextIsNull(model.studentPassword))
+            else if (queries.CheckTextIsNull(model.teacherPassword))
             {
                 return exeption.NullExeption();
             }
-            else if (queries.CheckLenghtOfStrings(model.studentPassword))
+            else if (queries.CheckLenghtOfStrings(model.teacherPassword))
             {
                 return exeption.LenghtExeption();
             }
-            else if (queries.CheckTextIsNull(model.eMail))
+            else if (queries.CheckTextIsNull(model.teacherEmail))
             {
                 return exeption.NullExeption();
             }
@@ -118,41 +115,41 @@ namespace Businnes.Model_Services
 
         }
 
-        public string StudentUpdateRequest(Student model)
+        public string TeacherUpdateRequest(Teacher model)
         {
-            if (Extensions.CheckNumberIsNull(model.SudentId))
+            if (Extensions.CheckNumberIsNull(model.teacherId))
             {
                 return exeption.NullExeption();
             }
-            else if (queries.CheckIsNumberNegative(model.SudentId))
+            else if (queries.CheckIsNumberNegative(model.teacherId))
             {
                 return exeption.NegativeExeption();
             }
-            else if (!queries.CheckIsExistId(model.SudentId))
+            else if (!queries.CheckIsExistId(model.teacherId))
             {
                 return exeption.IsExistNumberExeption();
             }
-            else if (queries.CheckTextIsNull(model.StudentName))
+            else if (queries.CheckTextIsNull(model.teacherName))
             {
                 return exeption.NullExeption();
             }
-            else if (queries.CheckStringsAreInteger(model.StudentName))
+            else if (queries.CheckStringsAreInteger(model.teacherName))
             {
                 return exeption.NumberExeption();
             }
-            else if (queries.CheckLenghtOfStrings(model.StudentName))
+            else if (queries.CheckLenghtOfStrings(model.teacherName))
             {
                 return exeption.LenghtExeption();
             }
-            else if (queries.CheckTextIsNull(model.StudentSurname))
+            else if (queries.CheckTextIsNull(model.teacherSurname))
             {
                 return exeption.NullExeption();
             }
-            else if (queries.CheckStringsAreInteger(model.StudentSurname))
+            else if (queries.CheckStringsAreInteger(model.teacherSurname))
             {
                 return exeption.NumberExeption();
             }
-            else if (queries.CheckLenghtOfStrings(model.StudentSurname))
+            else if (queries.CheckLenghtOfStrings(model.teacherSurname))
             {
                 return exeption.LenghtExeption();
             }
@@ -163,6 +160,5 @@ namespace Businnes.Model_Services
                 else { return exeption.FailtureExeption(); }
             }
         }
-
     }
 }

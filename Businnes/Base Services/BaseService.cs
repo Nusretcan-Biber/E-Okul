@@ -18,7 +18,7 @@ namespace Businnes.Base_Services
        
         Exeptions exeption = new Exeptions();
         Repository<T> repository = new Repository<T>();
-        Context c = new Context();
+        MasterContext c = new MasterContext();
         DbSet<T> _object;
 
 

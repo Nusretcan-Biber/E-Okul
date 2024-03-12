@@ -8,23 +8,28 @@ using System.Threading.Tasks;
 
 namespace Core.Check_List
 {
-    public class Queries <T> where T : class
+    public static class Extensions
     {
-
-        public bool CheckIsIdNegative(int studentId) 
+        public static bool CheckNumberIsNull(this int number)
         {
-            if (int.IsNegative(studentId)) { return true; }
-            else { return false; }
-        }
-
-        public bool CheckIdIsNull(int studentId)
-        {
-            var check = studentId == null;
+            var check = number == default;
 
             if (check) { return true; }
             else { return false; }
 
         }
+
+    }
+    public class Queries <T> where T : class
+    {
+
+        public bool CheckIsNumberNegative(int studentId) 
+        {
+            if (int.IsNegative(studentId)) { return true; }
+            else { return false; }
+        }
+
+        
         public bool CheckTextIsNull(string studentName)
         {
             if (string.IsNullOrEmpty(studentName)) { return true; }
@@ -53,6 +58,11 @@ namespace Core.Check_List
             if (result == null) { return false;}
             else { return true; }
 
+        }
+
+        public bool CheckIsCorrectRange(int number)
+        {
+            return number >= 0 && number <= 100;
         }
     }
 }

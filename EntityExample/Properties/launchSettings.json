@@ -16,6 +16,7 @@
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5277",
       "environmentVariables": {
+        "POSTGRES_URI": "User ID=root;Password=root;Host=localhost;Port=1907;Database=EntityExample_db;Pooling=true;MaxPoolSize=100;Connection Lifetime=0;",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },

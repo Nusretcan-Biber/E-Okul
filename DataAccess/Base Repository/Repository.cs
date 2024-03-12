@@ -11,7 +11,7 @@ namespace DataAccess
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        Context.Context c = new Context.Context();
+        Context.MasterContext c = new Context.MasterContext();
         DbSet<T> _object;
 
         public Repository()
