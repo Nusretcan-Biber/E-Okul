@@ -100,5 +100,10 @@ namespace Core.ExeptionControl
             return exeptionText;
         }
 
+        public string WrongRangeExeption()
+        {
+            exeptionText = "Lütfen 0'dan büyük, 100'den küçük sayı giriniz.";
+            return exeptionText;
+        }
     }
 }

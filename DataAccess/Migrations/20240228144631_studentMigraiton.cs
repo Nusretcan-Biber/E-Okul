@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigration : Migration
+    public partial class studentMigraiton : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,8 +17,11 @@ namespace DataAccess.Migrations
                 {
                     SudentId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    StudentName = table.Column<string>(type: "text", nullable: false),
-                    StudentSurname = table.Column<string>(type: "text", nullable: false)
+                    StudentName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    StudentSurname = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Password = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    eMail = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    GradeAvarage = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
